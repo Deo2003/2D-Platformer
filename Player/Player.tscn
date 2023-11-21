@@ -1,0 +1,144 @@
+[gd_scene load_steps=22 format=3 uid="uid://c0mbpe6nc77wa"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_xydlm"]
+[ext_resource type="Script" path="res://Player/StateMachine.gd" id="2_hnpla"]
+[ext_resource type="Texture2D" uid="uid://5w3v6pkd7v23" path="res://Assets/final.png" id="2_wrb4o"]
+[ext_resource type="Script" path="res://Player/Idle.gd" id="4_1s81x"]
+[ext_resource type="Script" path="res://Player/Moving.gd" id="5_46nio"]
+[ext_resource type="Script" path="res://Player/Jumping.gd" id="6_5pkge"]
+[ext_resource type="Script" path="res://Player/Falling.gd" id="7_t6aqf"]
+[ext_resource type="Script" path="res://Player/Camera2D.gd" id="8_s0o3q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxvr8"]
+atlas = ExtResource("2_wrb4o")
+region = Rect2(268, 140, 67, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nujxu"]
+atlas = ExtResource("2_wrb4o")
+region = Rect2(335, 140, 67, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t5bt"]
+atlas = ExtResource("2_wrb4o")
+region = Rect2(0, 0, 67, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omcir"]
+atlas = ExtResource("2_wrb4o")
+region = Rect2(335, 70, 67, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c32qa"]
+atlas = ExtResource("2_wrb4o")
+region = Rect2(201, 140, 67, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05bow"]
+atlas = ExtResource("2_wrb4o")
+region = Rect2(67, 0, 67, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iulxc"]
+atlas = ExtResource("2_wrb4o")
+region = Rect2(201, 0, 67, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jse53"]
+atlas = ExtResource("2_wrb4o")
+region = Rect2(0, 70, 67, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lemts"]
+atlas = ExtResource("2_wrb4o")
+region = Rect2(268, 0, 67, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjy8p"]
+atlas = ExtResource("2_wrb4o")
+region = Rect2(335, 0, 67, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj8jw"]
+atlas = ExtResource("2_wrb4o")
+region = Rect2(67, 70, 67, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nwdq2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxvr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nujxu")
+}],
+"loop": false,
+"name": &"Falling",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t5bt")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omcir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c32qa")
+}],
+"loop": false,
+"name": &"Jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05bow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iulxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jse53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lemts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjy8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lj8jw")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4i3oj"]
+size = Vector2(39, 78)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_xydlm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_nwdq2")
+animation = &"Moving"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11, -10)
+shape = SubResource("RectangleShape2D_4i3oj")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_hnpla")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_1s81x")
+
+[node name="Moving" type="Node" parent="StateMachine"]
+script = ExtResource("5_46nio")
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("6_5pkge")
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource("7_t6aqf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("8_s0o3q")
