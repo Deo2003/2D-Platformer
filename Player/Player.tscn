@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c0mbpe6nc77wa"]
+[gd_scene load_steps=22 format=3 uid="uid://c0mbpe6nc77wa"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_xydlm"]
 [ext_resource type="Script" path="res://Player/StateMachine.gd" id="2_hnpla"]
@@ -111,6 +111,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4i3oj"]
 size = Vector2(39, 78)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bx25p"]
+size = Vector2(58, 67)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_xydlm")
 
@@ -138,3 +141,13 @@ script = ExtResource("6_5pkge")
 
 [node name="Falling" type="Node" parent="StateMachine"]
 script = ExtResource("7_t6aqf")
+
+[node name="Coin_Collector" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin_Collector"]
+position = Vector2(-7, -2.5)
+shape = SubResource("RectangleShape2D_bx25p")
+
+[connection signal="body_entered" from="Coin_Collector" to="." method="_on_coin_collector_body_entered"]

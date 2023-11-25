@@ -1,5 +1,6 @@
 extends Node
 
+var coins = 0
 var fade = null
 var fade_speed = 0.015
 
@@ -41,6 +42,11 @@ func execute_fade_out(_target):
 		if fade.color.a >= 1:
 			fade_out = ""
 			
+func add_coin():
+	coins += 1
+	var Coins = get_node_or_null("/root/Game/UI/HUD/Coins")
+	if Coins != null:
+		Coins.text = "Coins: " + str(coins)
 
 
 func _unhandled_input(event):

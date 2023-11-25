@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ukauo0i4epi5"]
+[gd_scene load_steps=18 format=3 uid="uid://ukauo0i4epi5"]
 
 [ext_resource type="Texture2D" uid="uid://cuvt46v0qjss1" path="res://Assets/Grassy_Mountains_Parallax_Background-vnitti/layers/sky.png" id="1_3gb8u"]
 [ext_resource type="Script" path="res://Levels/Spawn.gd" id="1_8gf7s"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bu3nn271dt0ao" path="res://Assets/Grassy_Mountains_Parallax_Background-vnitti/layers/grassy_mountains.png" id="3_qcunv"]
 [ext_resource type="Script" path="res://Player/Player_Container.gd" id="6_4dv3v"]
 [ext_resource type="Texture2D" uid="uid://d4a7qphrw8q4c" path="res://Assets/myPortal.png" id="6_786wo"]
+[ext_resource type="PackedScene" uid="uid://cpk4wvk7umyu5" path="res://Enemies/bat.tscn" id="8_xtb5a"]
 [ext_resource type="Texture2D" uid="uid://c21ii7q7youws" path="res://Assets/myExit.png" id="9_b5imp"]
 [ext_resource type="Script" path="res://Levels/Camera.gd" id="12_qnh30"]
 
@@ -4472,5 +4473,13 @@ navigation_polygon = SubResource("NavigationPolygon_1trgp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("12_qnh30")
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="Bat" parent="enemies" instance=ExtResource("8_xtb5a")]
+position = Vector2(907, -119)
+
+[node name="Bat2" parent="enemies" instance=ExtResource("8_xtb5a")]
+position = Vector2(2755, -153)
 
 [connection signal="body_entered" from="Exit_to_2" to="Exit_to_2" method="_on_Exit_body_entered"]
