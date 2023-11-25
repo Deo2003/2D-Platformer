@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c0mbpe6nc77wa"]
+[gd_scene load_steps=21 format=3 uid="uid://c0mbpe6nc77wa"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_xydlm"]
 [ext_resource type="Script" path="res://Player/StateMachine.gd" id="2_hnpla"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Player/Moving.gd" id="5_46nio"]
 [ext_resource type="Script" path="res://Player/Jumping.gd" id="6_5pkge"]
 [ext_resource type="Script" path="res://Player/Falling.gd" id="7_t6aqf"]
-[ext_resource type="Script" path="res://Player/Camera2D.gd" id="8_s0o3q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxvr8"]
 atlas = ExtResource("2_wrb4o")
@@ -139,6 +138,3 @@ script = ExtResource("6_5pkge")
 
 [node name="Falling" type="Node" parent="StateMachine"]
 script = ExtResource("7_t6aqf")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("8_s0o3q")
